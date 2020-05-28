@@ -20,9 +20,9 @@ def __entity__(xml_data):
     for fragment in fragments:
         metadata[fragment.text] = fragment.attrib['schema']
 
-    return {'reference': reference.text, 'title': title.text, 'description': description.text,
+    return {'reference': reference.text, 'title': title.text if hasattr(title, 'text') else "",
+            'description': description.text if hasattr(description, 'text') else "",
             'security_tag': security_tag.text, 'parent': parent, 'metadata': metadata}
-
 
 class EntityAPI:
     """
